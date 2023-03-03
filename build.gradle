@@ -1,0 +1,17 @@
+// Gradle : 오픈 소스 빌드 자동화 도구 (<#> 참고 : https://velog.io/@appti/Using-Gradle-Plugins)
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.3'
+    id 'io.spring.dependency-management' version '1.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+// subprojects : 하위 모듈 제어
+subprojects {
+    group = 'AcademicPortal'
+    version = '0.0.1-SNAPSHOT'
+    sourceCompatibility = '17'
+}
