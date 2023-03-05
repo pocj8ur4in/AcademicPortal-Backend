@@ -9,9 +9,70 @@ repositories {
     mavenCentral()
 }
 
+// allprojects : root 및 하위 모듈 제어
+allprojects{
+
+}
+
 // subprojects : 하위 모듈 제어
 subprojects {
     group = 'AcademicPortal'
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
+
+    repositories {
+        mavenCentral()
+    }
+
+    // java 플러그인 (<#> 참고 : https://velog.io/@appti/The-Java-Plugin)
+    apply plugin: 'java'
+
+    apply plugin: 'org.springframework.boot'
+
+    // java-library : build.gradle에서 api() 사용 가능
+    apply plugin: 'java-library'
+
+    // io.spring.dependency-management : 스프링부트에서 자동으로 의존성 가져옴
+    apply plugin: 'io.spring.dependency-management'
+
+    configurations {
+        compileOnly {
+            extendsFrom annotationProcessor
+        }
+    }
+
+    // dependencies : 프로젝트 및 하위 모듈에 대한 의존성
+    dependencies {
+        compileOnly 'org.projectlombok:lombok'
+        annotationProcessor 'org.projectlombok:lombok'
+
+        testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+        // lombok을 테스팅 환경에서 사용 (<#> 참고 : https://jundragon.tistory.com/9)
+        testCompileOnly 'org.projectlombok:lombok'
+        testAnnotationProcessor 'org.projectlombok:lombok'
+
+        // JUnit5 API를 테스팅 환경에서 사용 (<#> 참고 : https://www.baeldung.com/junit-5-gradle)
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    }
+
+    tasks.named('test') {
+        // JUnit5 :  자바 프로그래밍에서 단위 테스트를 위한 프레임워크 (<#> 참고 : https://math-coding.tistory.com/158)
+        useJUnitPlatform()
+    }
+
+    // jar 파일 생성 (<#> 참고 : https://blog.leocat.kr/notes/2020/01/23/gradle-create-executable-jar-with-spring-boot)
+    bootJar.enabled = false
+    jar.enabled = true
+
+    // Task 'wrapper' not found in project ':project' 오류 해결 (<#> 참고 : https://hororolol.tistory.com/546)
+    wrapper {
+        gradleVersion = '4.4'
+        // Cannot add task 'wrapper' as a task with that name already exists 오류 해결 (<#> 참고 : https://taegyunum.tistory.com/entry/Cannot-add-task-wrapper-as-a-task-with-that-name-already-exists)
+        distributionUrl = distributionUrl.replace("bin", "all")
+    }
+
+    // :prepareKotlinBuildScriptModel Task fails in a Java project 오류 해결 (<#> 참고 : https://charactermail.tistory.com/351
+    tasks.register("prepareKotlinBuildScriptModel"){}
 }

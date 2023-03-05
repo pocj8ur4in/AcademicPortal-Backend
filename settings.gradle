@@ -1,1 +1,5 @@
 rootProject.name = 'AcademicPortal'
+include 'Api'
+include 'Core'
+include 'Domain'
+include 'Infrastructure'
