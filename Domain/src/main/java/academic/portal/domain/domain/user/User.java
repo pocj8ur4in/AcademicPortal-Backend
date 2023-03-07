@@ -1,12 +1,13 @@
 package academic.portal.domain.domain.user;
 
+import academic.portal.domain.domain.common.model.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Entity // @Entity : 엔티티 (@Entity를 사용하는 클래스)와 테이블 간의 매핑 (https://data-make.tistory.com/610)
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // JPA가 엔티티 객체를 생성할 때 기본 생성자 사용
-public class User {
+public class User extends BaseTimeEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     // @GeneratedValue : 영속성 컨텍스트는 엔티티를 식별자 값으로 구분하므로, 엔티티를 영속 상태로 만들려면 식별자 값이 반드시 필요
     // GenerationType.IDENTITY : 기본 키 생성전략을 자동생성으로 (기본 키 생성을 데이터베이스에 위임)
