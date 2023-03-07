@@ -12,6 +12,10 @@ repositories {
     mavenCentral()
 }
 
+// jar 파일 생성 (<#> 참고 : https://blog.leocat.kr/notes/2020/01/23/gradle-create-executable-jar-with-spring-boot)
+bootJar.enabled = false
+jar.enabled = true
+
 // allprojects : root 및 하위 모듈 제어
 allprojects{
 
