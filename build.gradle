@@ -3,7 +3,10 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.0.3'
     id 'io.spring.dependency-management' version '1.1.0'
+    id "com.diffplug.spotless" version "6.16.0"
 }
+
+apply from: "$rootDir/spotless.gradle" // gradle 내 플러그인에 대한 설정을 따로 파일로 생성 (<#> 참고 : https://keelim.tistory.com/entry/안드로이드-멀티-모듈-공통-gradle-그리고-ktlint-적용을-해보자)
 
 repositories {
     mavenCentral()

@@ -1,0 +1,24 @@
+// spotless : Junit에 대한 코드 포맷팅 및 유지보수를 위한 플러그인 (<#> 참고 : https://nesoy.github.io/articles/2020-04/Spotless)
+spotless {
+    version = "6.16.0"
+
+    java {
+        // 특정 파일에만 적용
+        target("**/*.java")
+
+        // import 순서 정의
+        importOrder()
+
+        // 사용하지 않는 import 제거
+        removeUnusedImports()
+
+        // 구글 자바 포맷 적용
+        googleJavaFormat().aosp()
+
+        // 공백 제거
+        trimTrailingWhitespace()
+
+        // 끝부분 New Line 처리
+        endWithNewline()
+    }
+}
