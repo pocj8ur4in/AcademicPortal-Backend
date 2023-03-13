@@ -1,0 +1,36 @@
+# 개발 및 운영 등에 대한 서버 환경의 배치 (<#> 참고 : https://bcho.tistory.com/759)
+
+# commons (공통)
+spring:
+  profiles:
+    include:
+      - infrastructure
+      - domain
+      - core
+---
+# dev (서버 개발)
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+# qa (테스팅) 환경
+spring:
+  config:
+    activate:
+      on-profile: qa
+
+---
+# staging (스테이징)
+spring:
+  config:
+    activate:
+      on-profile: staging
+
+---
+# production (실제 운영)
+spring:
+  config:
+    activate:
+      on-profile: production

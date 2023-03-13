@@ -1,0 +1,29 @@
+# commons (공통)
+
+---
+# dev (서버 개발)
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+---
+# qa (테스팅) 환경
+spring:
+  config:
+    activate:
+      on-profile: qa
+
+---
+# staging (스테이징)
+spring:
+  config:
+    activate:
+      on-profile: staging
+
+---
+# production (실제 운영)
+spring:
+  config:
+    activate:
+      on-profile: production
